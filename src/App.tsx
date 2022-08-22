@@ -1,26 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from "./Todolist.JSX";
+import {Todolist} from './Todolist';
+
+
+export type FilterType = "All" | "Active" | "Completed"
 
 function App() {
-    const title = "1111"
-    const title2 = "2222"
 
-    const tasks1 = [
+
+    let [tasks1, setTasks1] = useState([
         {id: 1, title: "HTML&CSS", isDone: true},
         {id: 2, title: "JS", isDone: true},
-        {id: 3, title: "ReactJS", isDone: false}
-    ]
-    const tasks2 = [
-        {id: 1, title: "Hello world", isDone: true},
-        {id: 2, title: "I am Happy", isDone: false},
-        {id: 3, title: "Yo", isDone: false}
-    ]
+        {id: 3, title: "ReactJS", isDone: false},
+        {id: 4, title: "ReactJS2", isDone: false}
+    ])
+
+    let [filterValue, setfilterderTasks] = useState("All")
+    let filterderTasks = tasks1
+    if (filterValue === 'Active') {
+        filterderTasks = tasks1.filter(el => !el.isDone)
+    }
+    if (filterValue === 'Completed') {
+        filterderTasks = tasks1.filter(el => el.isDone)
+    }
+
+
+    const removeTask = (tasksid: number) => {
+        setTasks1(tasks1.filter((el) => el.id !== tasksid))
+    }
+
+
+    const FilderButton = (filterVal: string) => {
+        setfilterderTasks(filterVal)
+        console.log(filterVal)
+    }
 
     return (
         <div className="App">
-            <Todolist title={title} titleNEW={100200} tasks={tasks1}/>
-            <Todolist title={title2} tasks={tasks2}/>
+            <Todolist title="What to learn"
+                      tasks={filterderTasks}
+                      removeTask={removeTask}
+                      FilderButton={FilderButton}
+
+
+            />
         </div>
     );
 }
