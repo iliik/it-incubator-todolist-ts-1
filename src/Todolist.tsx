@@ -9,7 +9,7 @@ export type TaskType = {
     isDone: boolean
 }
 
-type PropsType = {
+export type PropsType = {
     id: string
     title: string
     tasks: Array<TaskType>
