@@ -17,17 +17,18 @@ import {Menu} from "@mui/icons-material";
 import {EditableSpan} from "./EditableSpan";
 import {action} from "@storybook/addon-actions";
 import AppWithRedux from "./AppWithRedux";
+import {ReduxStoreProviderDecorator} from "./stories/ReduxStoreProviderDecorator";
 
 
 export default {
     title: 'AppWithRedux Component',
-    component: AppWithRedux
+    component: AppWithRedux,
+    decorators:[ReduxStoreProviderDecorator]
 }
 
-export const EditableSpanBaseExample = (props: any) => {
-    return <Provider store={store}>
-        <AppWithRedux/>
-    </Provider>
+export const AppWithReduxBaseExample = (props: any) => {
+    return<AppWithRedux/>
+
 
 
 }
